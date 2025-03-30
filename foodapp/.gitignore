@@ -1,0 +1,11 @@
+# Ignore Python cache files and environment folders
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+.env
+
+# Ignore SQLite DB and VS Code settings
+db.sqlite3
+.vscode/
+
