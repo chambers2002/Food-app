@@ -39,6 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'userapp',
     'registration.apps.RegistrationConfig',
+    'crispy_forms',
+    'crispy_bootstrap4',
 ]
 
 MIDDLEWARE = [
@@ -130,3 +132,10 @@ import os
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'),
 ]
+
+CRISPY_ALLOWED_TEMPLATE_PACKS = 'bootstrap4'
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
+LOGIN_REDIRECT_URL = 'userapp:home'
+
+LOGIN_URL = 'login'
