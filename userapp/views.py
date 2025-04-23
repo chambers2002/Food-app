@@ -9,5 +9,8 @@ def about(request):
 
 def contact(request):
     return render(request, 'userapp/contact.html', {'title': 'Contact'})
+
+def meals(request):
+    return render(request, 'userapp/meals.html', {'title': 'Meals'})
 # Create your views here.
 
