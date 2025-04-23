@@ -64,20 +64,28 @@
         <div class="col-md-8">
             {% block content %}{% endblock %}
         </div>
+        {% if user.is_authenticated %}
         <div class="col-md-4">
             <div class="content-section">
-                <h3>General Information</h3>
-                <p class='text-muted'>Lorem ipsum dolor sit amet, iudico docendi inciderint per
-                    eu, ea vis scripta senserit periculis.
-                    <ul class="list-group">
-                        <li class="list-group-item list-group-item-light">Latest Issues Reported</li>
-                        <li class="list-group-item list-group-item-light">IT Policies</li>
-                        <li class="list-group-item list-group-item-light">IT Regulations</li>
-                        <li class="list-group-item list-group-item-light">Upcoming Events</li>
-                    </ul>
-                </p>
+                <h3>Student Meal Planning</h3>
+                <p class='text-muted'>Quick links to key features:</p>
+                <ul class="list-group">
+                    <li class="list-group-item list-group-item-light">
+                        <a href="{% url 'userapp:meal_suggestions' %}">Meal Suggestions</a>
+                    </li>
+                    <li class="list-group-item list-group-item-light">
+                        <a href="{% url 'userapp:budget_groceries' %}">Budget Groceries</a>
+                    </li>
+                    <li class="list-group-item list-group-item-light">
+                        <a href="{% url 'userapp:diet_preferences' %}">Diet Preferences</a>
+                    </li>
+                    <li class="list-group-item list-group-item-light">
+                        <a href="{% url 'userapp:eco_meals' %}">Eco Meals</a>
+                    </li>
+                </ul>
             </div>
         </div>
+        {% endif %}
     </div>
 </div>
 <!-- Optional JavaScript -->
