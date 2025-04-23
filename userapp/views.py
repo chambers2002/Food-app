@@ -5,9 +5,9 @@ def home(request):
     return render(request, 'userapp/home.html', {'title': 'Welcome'})
 
 def about(request):
-    return HttpResponse('<h1>Hello this is our About page for our Food App</h1>')
+    return render(request, 'userapp/about.html', {'title': 'About'})
 
 def contact(request):
-    return HttpResponse('<h1>Hello this is our Contact page for our Food App</h1>')
+    return render(request, 'userapp/contact.html', {'title': 'Contact'})
 # Create your views here.
 
