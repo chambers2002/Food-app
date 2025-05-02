@@ -13,17 +13,5 @@ def contact(request):
 def meals(request):
     return render(request, 'userapp/meals.html', {'title': 'Meals'})
 
-def meal_suggestions(request):
-    return render(request, 'userapp/mealsuggestions.html')
-
-def budget_groceries(request):
-    return render(request, 'userapp/budgetgroceries.html')
-
-def diet_preferences(request):
-    return render(request, 'userapp/dietpreferences.html')
-
-def eco_meals(request):
-    return render(request, 'userapp/ecomeals.html')
-
 # Create your views here.
 

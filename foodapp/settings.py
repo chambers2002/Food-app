@@ -41,6 +41,10 @@ INSTALLED_APPS = [
     'registration.apps.RegistrationConfig',
     'crispy_forms',
     'crispy_bootstrap4',
+    'ecomeals',
+    'mealsuggestions',
+    'budgetgroceries',
+    'dietpreferences',
 ]
 
 MIDDLEWARE = [
