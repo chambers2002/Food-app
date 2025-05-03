@@ -21,6 +21,10 @@ from django.contrib.auth import views as auth_views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('eco/', include('ecomeals.urls')),
+    path('meals/', include('mealsuggestions.urls')),
+    path('budget/', include('budgetgroceries.urls')),
+    path('diet/', include('dietpreferences.urls')),
     path('', include('userapp.urls')),
     path('register/', views.register, name='register'),
     path('login/',auth_views.LoginView.as_view(template_name='registration/login.html'),name='login'),
