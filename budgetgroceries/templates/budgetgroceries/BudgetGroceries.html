@@ -3,18 +3,32 @@
 {% block content %}
 <h2>Student Budget Groceries</h2>
 
-<form method="get">
-    <input type="text" name="product" placeholder="Search for a grocery item...">
-    <button type="submit">Search Deals</button>
+<form method="get" class="mb-4">
+    <input type="text" name="location" value="{{ location }}" class="form-control mb-2"
+     placeholder="Enter Postcode or address" required>
+     <button type="submit" class="btn btn-primary"> Searching for Nearby Stores</button>
 </form>
 
-{% if products %}
-    <ul>
-        {% for item in products %}
-            <li>{{ item.name }} - £{{ item.price }}</li>
-        {% endfor %}
-    </ul>
-{% else %}
-    <p>Use this tool to find the cheapest staples or current store deals.</p>
+{% if stores %}
+    <h4>Avaliable Stores Nearby "{{ location }}"</h4>
+    <div id="map" style="height: 275px;"></div>
+{% elif location %}
+    <p>There is no nearby stores near your location. Please choose another Location.</p>
 {% endif %}
+{% endblock %}
+
+{% block extra_scripts %}
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script>
+{% if stores %}
+    const map = L.map('map').setView([{{ stores.0.lat }}, {{ stores.0.lon }}], 15);
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
+
+    {% for store in stores %}
+        L.marker([{{ store.lat }}, {{ store.lon }}]).addTo(map)
+            .bindPopup("{{ store.name }}");
+    {% endfor %}
+{% endif %}
+</script>
 {% endblock %}

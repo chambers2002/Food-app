@@ -8,17 +8,6 @@ def meal_suggestions(request):
     if not query:
         recipes = [
         {
-            "title": "Healthy Chickpea Salad",
-            "id": 715497,
-            "image": "https://spoonacular.com/recipeImages/715497-312x231.jpg"
-            
-        },
-        {
-            "title": "Vegetable Stir Fry with Brown Rice",
-            "id": 782585,
-            "image": "https://spoonacular.com/recipeImages/782585-312x231.jpg"
-        },
-        {
             "title": "Simple Grilled Chicken Bowl",
             "id": 716426,
             "image": "https://spoonacular.com/recipeImages/716426-312x231.jpg"

@@ -1,15 +1,26 @@
 from django.shortcuts import render
+import requests
 
 def budget_groceries(request):
-    products = []
-    product_query = request.GET.get('product')
-    if product_query:
-        # Placeholder product list
-        products = [
-            {"name": f"{product_query.title()} Brand A", "price": 1.00},
-            {"name": f"{product_query.title()} Brand B", "price": 1.25},
-        ]
-    return render(request, "budgetgroceries/BudgetGroceries.html", {"products": products})
+    location = request.GET.get('location','')
+    stores = []
+    
+    if location:
+        geo_url = "https://nominatim.openstreetmap.org/search"
+        geo_params = {"q": location, "format": "json", "limit": 1}
+        geo_res = requests.get(geo_url, params=geo_params, headers={"User-Agent": "budgergroceries-app"})
+        
+        if geo_res.status_code == 200 and geo_res.json():
+            coords = geo_res.json()[0]
+            lat, lon = float(coords['lat']), float(coords['lon'])
+            
+            stores = [
+                {"name": "Grocery Student Discounts", "lat": lat + 0.001, "lon": lon + 0.001},
+                {"name": "Express Budget Marketing", "lat": lat - 0.001, "lon": lon - 0.001}
+            ]
+            
+    return render(request, "budgetgroceries/BudgetGroceries.html", {
+        "location": location,
+        "stores": stores
+    })
 
-
-# Create your views here.
