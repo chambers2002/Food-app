@@ -1,6 +1,20 @@
 {% extends 'userapp/base.html' %}
 {% block title %}Eco Meals{% endblock %}
 {% block content %}
-<h2>Eco Meals</h2>
-<p>Explore sustainable meal choices!</p>
+<h2>Eco-Friendly Meal Planning</h2>
+
+<form method="get">
+    <input type="text" name="eco_query" placeholder="e.g. low carbon, leftovers">
+    <button type="submit">Find Eco Meals</button>
+</form>
+
+{% if eco_meals %}
+    <ul>
+        {% for meal in eco_meals %}
+            <li>{{ meal.title }}</li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>Enter a query to find meals that are sustainable or use local ingredients.</p>
+{% endif %}
 {% endblock %}

@@ -1,0 +1,31 @@
+{% extends 'userapp/base.html' %}
+{% block title %}Diet Preferences{% endblock %}
+{% block content %}
+<h2>Manage Your Diet & Allergy Settings</h2>
+
+<form method="get">
+    <label for="diet">Diet Type:</label>
+    <select name="diet" id="diet">
+        <option value="">-- Select --</option>
+        <option value="vegan">Vegan</option>
+        <option value="vegetarian">Vegetarian</option>
+        <option value="gluten free">Gluten-Free</option>
+        <option value="keto">Keto</option>
+    </select><br><br>
+
+    <label for="allergy">Allergies:</label>
+    <input type="text" name="allergy" placeholder="e.g. nuts, dairy"><br><br>
+
+    <button type="submit">Filter Meals</button>
+</form>
+
+{% if filtered_meals %}
+    <ul>
+        {% for meal in filtered_meals %}
+            <li>{{ meal.title }}</li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>Apply diet or allergy filters to receive customized meal suggestions.</p>
+{% endif %}
+{% endblock %}

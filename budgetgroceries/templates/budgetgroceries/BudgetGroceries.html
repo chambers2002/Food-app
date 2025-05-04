@@ -1,0 +1,20 @@
+{% extends 'userapp/base.html' %}
+{% block title %}Budget Groceries{% endblock %}
+{% block content %}
+<h2>Student Budget Groceries</h2>
+
+<form method="get">
+    <input type="text" name="product" placeholder="Search for a grocery item...">
+    <button type="submit">Search Deals</button>
+</form>
+
+{% if products %}
+    <ul>
+        {% for item in products %}
+            <li>{{ item.name }} - £{{ item.price }}</li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>Use this tool to find the cheapest staples or current store deals.</p>
+{% endif %}
+{% endblock %}

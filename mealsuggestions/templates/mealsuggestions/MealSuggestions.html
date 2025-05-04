@@ -1,0 +1,23 @@
+{% extends 'userapp/base.html' %}
+{% block title %}Smart Meal Suggestions{% endblock %}
+{% block content %}
+<h2>Smart Meal Suggestions</h2>
+
+<form method="get">
+    <input type="text" name="query" placeholder="Search meals by keyword...">
+    <button type="submit">Search</button>
+</form>
+
+{% if recipes %}
+    <ul>
+        {% for meal in recipes %}
+            <li>
+                <strong>{{ meal.title }}</strong><br>
+                <img src="{{ meal.image }}" width="150">
+            </li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>No recipes found. Try searching for something like "pasta" or "vegan".</p>
+{% endif %}
+{% endblock %}

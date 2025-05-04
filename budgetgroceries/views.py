@@ -1,18 +1,15 @@
 from django.shortcuts import render
 
-def budget_home(request):
-    return render(request, 'budgetgroceries/BudgetGroceries.html')
+def budget_groceries(request):
+    products = []
+    product_query = request.GET.get('product')
+    if product_query:
+        # Placeholder product list
+        products = [
+            {"name": f"{product_query.title()} Brand A", "price": 1.00},
+            {"name": f"{product_query.title()} Brand B", "price": 1.25},
+        ]
+    return render(request, "budgetgroceries/BudgetGroceries.html", {"products": products})
 
-def cheap_staples(request):
-    return render(request, 'budgetgroceries/CheapStaples.html')
-
-def weekly_deals(request):
-    return render(request, 'budgetgroceries/WeeklyDeals.html')
-
-def budget_calc(request):
-    return render(request, 'budgetgroceries/BudgetCalculator.html')
-
-def store_comparison(request):
-    return render(request, 'budgetgroceries/StoreComparison.html')
 
 # Create your views here.
