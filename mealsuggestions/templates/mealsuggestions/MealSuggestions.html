@@ -3,21 +3,33 @@
 {% block content %}
 <h2>Smart Meal Suggestions</h2>
 
-<form method="get">
-    <input type="text" name="query" placeholder="Search meals by keyword...">
-    <button type="submit">Search</button>
+<form method="get" class="mb-4">
+    <input type="text" name="query" class="form-control mb-2" placeholder="e.g. chicken, pasta, vegan" required>
+    <button type="submit" class="btn btn-primary">Search</button>
 </form>
 
 {% if recipes %}
-    <ul>
-        {% for meal in recipes %}
-            <li>
-                <strong>{{ meal.title }}</strong><br>
-                <img src="{{ meal.image }}" width="150">
-            </li>
-        {% endfor %}
-    </ul>
+<div class="row">
+    {% for meal in recipes %}
+    <div class="col-md-4 mb-4">
+        <div class="card h-100">
+            <img src="{{ meal.image }}" class="card-img-top" alt="{{ meal.title }}">
+            <div class="card-body">
+                <h5 class="card-title">{{ meal.title }}</h5>
+                {% if meal.readyInMinutes %}
+                <p class="card-text">Ready in {{ meal.readyInMinutes }} mins</p>
+                {% endif %}
+                <a href="https://spoonacular.com/recipes/{{ meal.title|slugify }}-{{ meal.id }}" 
+                target="_blank" class="btn btn-outline-success">View Recipe</a>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
 {% else %}
-    <p>No recipes found. Try searching for something like "pasta" or "vegan".</p>
+    {% if request.GET.query %}
+    <p>No recipes found for your search.</p>
+    {% endif %}
 {% endif %}
 {% endblock %}
+

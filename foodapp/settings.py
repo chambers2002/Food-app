@@ -143,3 +143,5 @@ CRISPY_TEMPLATE_PACK = 'bootstrap4'
 LOGIN_REDIRECT_URL = 'userapp:home'
 
 LOGIN_URL = 'login'
+
+SPOONACULAR_API_KEY = '1d78d06aaded4792bbf5da2b2ab8d8dd'
