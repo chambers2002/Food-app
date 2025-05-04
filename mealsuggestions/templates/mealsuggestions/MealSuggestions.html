@@ -1,14 +1,27 @@
 {% extends 'userapp/base.html' %}
-{% block title %}Smart Meal Suggestions{% endblock %}
+{% block title %}Meal Suggestions{% endblock %}
 {% block content %}
-<h2>Smart Meal Suggestions</h2>
+<h2>Find the best Smart Meal Suggestions here</h2>
 
 <form method="get" class="mb-4">
-    <input type="text" name="query" class="form-control mb-2" placeholder="e.g. chicken, pasta, vegan" required>
-    <button type="submit" class="btn btn-primary">Search</button>
+    <input type="text" name="query" value="{{ query }}" class="form-control mb-2" placeholder="e.g. chicken, pasta, vegan" required>
+    
+    <input type="number" name="max_calories" value="{{ max_calories }}" class="form-control mb-2" placeholder="Max calories (optional)">
+    
+    <div class="form-check mb-2">
+        <input class="form-check-input" type="checkbox" name="cheap" id="cheap" {% if cheap %}checked{% endif %}>
+        <label class="form-check-label" for="cheap">
+            This if for Budget-friendly meals to your tasting
+        </label>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Press here to Search for Meals</button>
 </form>
 
 {% if recipes %}
+    {% if not query %}
+        <p>These are some of the best recommended healthy meals for students for you:</p>
+    {% endif %}
 <div class="row">
     {% for meal in recipes %}
     <div class="col-md-4 mb-4">
@@ -17,19 +30,19 @@
             <div class="card-body">
                 <h5 class="card-title">{{ meal.title }}</h5>
                 {% if meal.readyInMinutes %}
-                <p class="card-text">Ready in {{ meal.readyInMinutes }} mins</p>
+                <p class="card-text"> {{ meal.readyInMinutes }} mins</p>
                 {% endif %}
-                <a href="https://spoonacular.com/recipes/{{ meal.title|slugify }}-{{ meal.id }}" 
-                target="_blank" class="btn btn-outline-success">View Recipe</a>
+                <a href="https://spoonacular.com/recipes/{{ meal.title|slugify }}-{{ meal.id }}" target="_blank" class="btn btn-outline-success">View Recipe</a>
             </div>
         </div>
     </div>
     {% endfor %}
 </div>
 {% else %}
-    {% if request.GET.query %}
-    <p>No recipes found for your search.</p>
+    {% if query %}
+    <p>There has been no meals found. Please you different or filters or check your spelling for your desired meal.</p>
     {% endif %}
 {% endif %}
 {% endblock %}
+
 

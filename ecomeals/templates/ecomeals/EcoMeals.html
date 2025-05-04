@@ -1,20 +1,38 @@
 {% extends 'userapp/base.html' %}
 {% block title %}Eco Meals{% endblock %}
 {% block content %}
-<h2>Eco-Friendly Meal Planning</h2>
+<h2>Ingredient Finder using Eco-Meals</h2>
 
-<form method="get">
-    <input type="text" name="eco_query" placeholder="e.g. low carbon, leftovers">
-    <button type="submit">Find Eco Meals</button>
+<form method="get" class="mb-4">
+    <input type="text" name="eco_query" class="form-control" placeholder="e.g. lentils, tofu, pasta">
+    <button type="submit" class="btn btn-success mt-2">Search</button>
 </form>
 
 {% if eco_meals %}
-    <ul>
-        {% for meal in eco_meals %}
-            <li>{{ meal.title }}</li>
-        {% endfor %}
-    </ul>
+    {% if not query %}
+        <p>Students Recommended sustainable best Eco Meals. Search Below to find the best avalible Eco Foods and Meals today</p>
+    {% endif %}
+<div class="row">
+    {% for item in eco_meals %}
+    <div class="col-md-4 mb-3">
+        <div class="card h-100">
+            {% if item.image %}
+            <img src="{{ item.image }}" class="card-img-top" alt="{{ item.product_name }}">
+            {% endif %}
+            <div class="card-body">
+                <h5 class="card-title">{{ item.product_name }}</h5>
+                <p class="card-text">
+                    Eco-Score of item: {{ item.ecoscore|default:"?"|upper }}<br>
+                    NOVA of item: {{ item.nova|default:"?" }}<br>
+                    Nutritrional-Score of item: {{ item.nutriscore|default:"?"|upper }}
+                </p>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
 {% else %}
-    <p>Enter a query to find meals that are sustainable or use local ingredients.</p>
+<p>Search for an ingredient to see its environmental impact and health score of this chosen ingredient.</p>
 {% endif %}
 {% endblock %}
+
