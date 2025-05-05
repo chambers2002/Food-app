@@ -2,4 +2,19 @@
 {% block content %}
     <h1>Contact</h1>
     <p>Reach out with feedback or suggestions!</p>
+
+    {% if messages %}
+        {% for message in messages %}
+            <div style="color: {% if message.tags == 'success' %}
+            green{% else %}red{% endif %};">
+                {{ message }}
+            </div>
+        {% endfor %}
+    {% endif %}
+
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Send message</button>
+    </form>
 {% endblock %}

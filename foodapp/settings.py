@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 """
 
 from pathlib import Path
+from decouple import config
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -145,3 +146,6 @@ LOGIN_REDIRECT_URL = 'userapp:home'
 LOGIN_URL = 'login'
 
 SPOONACULAR_API_KEY = '1d78d06aaded4792bbf5da2b2ab8d8dd'
+
+SENDGRID_API_KEY = config('SENDGRID_API_KEY')
+DEFAULT_FROM_EMAIL = config('DEFAULT_FROM_EMAIL')
