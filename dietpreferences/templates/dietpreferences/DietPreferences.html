@@ -1,31 +1,50 @@
 {% extends 'userapp/base.html' %}
 {% block title %}Diet Preferences{% endblock %}
 {% block content %}
-<h2>Manage Your Diet & Allergy Settings</h2>
+<h2>Manage Your Diet and Allergies in this Meal Finder</h2>
 
-<form method="get">
-    <label for="diet">Diet Type:</label>
-    <select name="diet" id="diet">
+<form method="get" class="mb-4">
+    <label><strong>Diet Types:</strong></label>
+    <select name="diet" class="form-control mb-2">
         <option value="">-- Select --</option>
-        <option value="vegan">Vegan</option>
-        <option value="vegetarian">Vegetarian</option>
-        <option value="gluten free">Gluten-Free</option>
-        <option value="keto">Keto</option>
-    </select><br><br>
+        <option value="vegan" {% if diet == 'vegan' %}selected{% endif %}> Vegan</optionn>
+        <option value="vegetarian" {% if diet == 'vegetarian' %}selected{% endif %}> Vegetarian</option>
+        <option value="pescetarian" {% if diet == 'pescetarian' %}selected{% endif %}> Pescetarian</option>
+        <option value="ketogenic" {% if diet == 'ketogenic' %}selected{% endif %}> Keto</option>
+        <option value="gluten free" {% if diet == 'gluten free' %}selected{% endif %}> Gluten-Free</option>
+    </select>
 
-    <label for="allergy">Allergies:</label>
-    <input type="text" name="allergy" placeholder="e.g. nuts, dairy"><br><br>
-
-    <button type="submit">Filter Meals</button>
+    <label><strong>Allergies:</strong></label>
+    <input type="text" name="allergies" 
+    class="form-control mb-3" value-"{{ allergies }}" placeholder="e.g. nuts, dairy">
+ 
+    <button type="submit" class="btn btn-success">Meal Filtering</button>
 </form>
 
-{% if filtered_meals %}
-    <ul>
-        {% for meal in filtered_meals %}
-            <li>{{ meal.title }}</li>
-        {% endfor %}
-    </ul>
-{% else %}
-    <p>Apply diet or allergy filters to receive customized meal suggestions.</p>
+{% if recipes %}
+    <h5 class="mt-4">Healthy Meal Recommendations</h5>
+    <div class="container px-0">
+        <div class="row">
+            {% for meal in recipes %}
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100">
+                        <img src="{{ meal.image }}" class="card-img-top" style="height: 200px; object-fit: cover;" alt="{{ meal.title }}">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ meal.title }}</h5>
+                            <ul class="list-unstyled small">
+                                <li><strong>Calories:</strong> {{ meal.nutrition.nutrients.0.amount|floatformat:0 }} kcal</li>
+                                <li><strong>Protein:</strong> {{ meal.nutrition.nutrients.8.amount|floatformat:1 }} g</li>
+                                <li><strong>Fiber:</strong> {{ meal.nutrition.nutrients.4.amount|floatformat:1 }} g</li>
+                            </ul>
+                            <a href="https://spoonacular.com/recipes/{{ meal.title|slugify }}-{{ meal.id }}"
+                            target="_blank" class="btn btn-outline-success btn-sm">View Recipes</a>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% elif diet or allergies %}
+    <p class="text-danger">No meals found. Try adjusting your filters.</p>
 {% endif %}
 {% endblock %}
