@@ -24,3 +24,6 @@ def budget_groceries(request):
         "stores": stores
     })
 
+def budget_groceries_view(request):
+    max_price = request.GET.get('max_price')  
+    return render(request, 'budget_groceries.html', {'max_price': max_price})

@@ -34,3 +34,9 @@ def diet_preferences(request):
         "allergies": allergies,
     })
     
+def diet_preferences_view(request):
+    api_key = settings.SPOONACULAR_API_KEY
+    diet = request.GET.get('filter') 
+    url = f"https://api.spoonacular.com/recipes/complexSearch?diet={diet}&apiKey={api_key}"
+    response = requests.get(url).json()
+    return render(request, 'diet_preferences.html', {'recipes': response.get('results', [])})

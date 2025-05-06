@@ -1,5 +1,65 @@
 {% extends "userapp/base.html" %}
 {% block content %}
-    <h1>Meal Explorer</h1>
-    <p>Here you'll see a list of student-friendly meals.</p>
+
+<h1>Smart Meal Questionnaire</h1>
+<p>Answer a few questions and we’ll suggest the best meals or pages.</p>
+
+<form id="questionnaire-form">
+  {% csrf_token %}
+
+  <h3>Dietary Preferences</h3>
+  <select name="preferences" multiple class="form-control">
+    <option value="vegan">Vegan</option>
+    <option value="vegetarian">Vegetarian</option>
+    <option value="keto">Keto</option>
+    <option value="gluten_free">Gluten-Free</option>
+  </select>
+
+  <h3>Allergies</h3>
+  <select name="allergies" multiple class="form-control">
+    <option value="nuts">Nuts</option>
+    <option value="dairy">Dairy</option>
+    <option value="seafood">Seafood</option>
+  </select>
+
+  <h3>Budget</h3>
+  <input type="number" name="budget" placeholder="Max Budget" class="form-control">
+
+  <h3>Eco-Friendly</h3>
+  <input type="checkbox" name="eco_friendly" value="true"> Prefer eco-friendly meals
+
+  <br><br>
+  <button type="submit" class="btn btn-primary">Get Recommendations</button>
+</form>
+
+<script>
+  document.getElementById('questionnaire-form').addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    const formData = new FormData(e.target);
+    const data = Object.fromEntries(formData.entries());
+
+    data.preferences = formData.getAll('preferences');
+    data.allergies = formData.getAll('allergies');
+    data.eco_friendly = formData.has('eco_friendly');
+
+    const csrfToken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+
+    const response = await fetch('/api/recommendations/', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'X-CSRFToken': csrfToken
+      },
+      body: JSON.stringify(data)
+    });
+
+    const result = await response.json();
+    if (result.redirect_url) {
+      window.location.href = result.redirect_url;
+    }
+  });
+</script>
+
 {% endblock %}
+
