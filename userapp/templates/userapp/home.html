@@ -1,41 +1,98 @@
 {% extends "userapp/base.html" %}
 
 {% block content %}
-<div class="container mt-4">
+
     <h1>Welcome to Declan's Smart Food App</h1>
     <p>This app helps students to find cheap and affordalble meals using:</p>
 
-    <div class="row mt-5">
-        <div class="col-md-6">
-            <h2>Featues</h2>
-            <ul class="list-group">
-                <li class="list-group-item">Tasty Meal suggestions tailored to you</li>
-                <li class="list-group-item">Locations near you for Budget Groceries</li>
-                <li class="list-group-item">Eco-Friendly meal choses</li>
-                <li class="list-group-item">Diet Preferences and Filtering Allergies</li>
-            </ul>
-        </div>
-        <div class="col-md-6">
-            <h3>Benefits for Students</h3>
-            <ul class"list-group">
-                <li class="list-group-item"> Weekly Planner for Meals</li>
-                <li class="list-group-item"> Healthy Local Meal Deals</li>
-                <li class="list-group-item"> Sustainable Food Tracker</li>
-            </ul>
-        </div>
-    </div>
+    <h2>Features</h2>
+    <ul class="list-group">
+        <li>Tasty Meal suggestions tailored to you</li>
+        <li>Locations near you for Budget Groceries</li>        
+        <li>Eco-Friendly meal choses</li>
+        <li>Diet Preferences and Filtering Allergies</li>
+    </ul>
 
-    <div class="mt-5">
-        <h3>Top Meals Today!</h3>
-        <div class="card" style="width: 18rem;">
-            <img src="https://spoonacular.com/recipeImages/716426-312x231.jpg" class="card-img-top" alt="Top Meal">
-            <div class="card-body">
-                <h5>Simple Grilled Chicken Bowl</h5>
-                <p class="card-text">A healthy, protein that is easy-to-cook protein meal.</p>
-                <a href="https://spoonacular.com/recipes/simple-grilled-chicken-bowl-716426" 
-                target="_blank" class="btn btn-primary">View the Recipe</a>
+    <h3>Benefits for Students</h3>
+    <div class="row mb-4">
+        <div class="col-md-4">
+            <div class="card border-info">
+                <div class="card-body">
+                     <h5 class="card-title">Weekly Planner</h5>
+                     <p class="card-text">Plan Meals in your time and budget with smart suggestions.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card border-success">
+                <div class="card-body">
+                     <h5 class="card-title">Healthy Meal Deals</h5>
+                     <p class="card-text">Nutritional student-friendly meals from grocers and stores.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card border-warning">
+                <div class="card-body">
+                     <h5 class="card-title">Sustainable Trackesr</h5>
+                     <p class="card-text">Choose your Eco-friendly meal choice and Track your Food Habits today.</p>
+                </div>
+            </div>
+        </div>
+
+
+    <div class="row mt-5">
+        <div class="col-md 6">
+            <h3>Top Meals Today!</h3>
+            <div class="card" style="width: 100%;">
+                <img src="https://spoonacular.com/recipeImages/716426-312x231.jpg" class="card-img-top" alt="Top Meal">
+                <div class="card-body">
+                    <h5 class="card-title">Simple Grilled Chicken Bowl</h5>                    
+                    <p class="card-text">A healthy, protein that is easy-to-cook protein meal.</p>
+                    <a href="https://spoonacular.com/recipes/simple-grilled-chicken-bowl-716426" 
+                    target="_blank" class="btn btn-primary">View the Recipe</a>
+                </div>
             </div>
         </div>
     </div>
-</div>
+
+    <h3>Top Weekly Picks</h3>
+    <div class="row">
+        <div class="col-md-4">
+            <div class="card mb-3">
+                <img src="https://spoonacular.com/recipeImages/652417-312x231.jpg" class="card-img-top" alt="One-Pot Spaghetti">
+                <div class="card-body">
+                    <h5 class="card-title">Easy One-Pot Spaghetti</h5>
+                    <p class="card-text">One-pot dish with rich tomato flavor. This is perfect for busy students!</p>
+                    <a href="https://spoonacular.com/recipes/easy-one-pot-spaghetti-652417" 
+                    target="_blank" class="btn btn-success">See recipe</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card mb-3">
+                <img src="https://spoonacular.com/recipeImages/716429-312x231.jpg" class="card-img-top" alt="Pesto Pasta">
+                <div class="card-body">
+                    <h5 class="card-title">Creamy Pesto Pasta</h5>
+                    <p class="card-text">Affordable, Creamy and easy to make Meal.</p>
+                    <a href="https://spoonacular.com/recipes/pasta-with-garlic-scapes-pesto-716429" 
+                    target="_blank" class="btn btn-success">See Recipe</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card mb-3">
+                <img src="https://spoonacular.com/recipeImages/658509-312x231.jpg" class="card-img-top" alt="Veggie Stir Fry">
+                <div class="card-body">
+                    <h5 class="card-title">Veggie Stir-Fry Bowl</h5>
+                    <p class="card-text"> Nutritious Sustainable Meal with Veggie-packed stir Fry</p>
+                    <a href="https://spoonacular.com/recipes/spring-veggie-stir-fry-bowl-658509" 
+                    target="_blank" class="btn btn-success">See Recipe</a>
+            </div>
+        </div>
+
 {% endblock %}
