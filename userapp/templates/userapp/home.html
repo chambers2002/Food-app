@@ -1,6 +1,41 @@
 {% extends "userapp/base.html" %}
 
 {% block content %}
-    <h1>Welcome to Declan's Home Page</h1>
-{% endblock %}
+<div class="container mt-4">
+    <h1>Welcome to Declan's Smart Food App</h1>
+    <p>This app helps students to find cheap and affordalble meals using:</p>
 
+    <div class="row mt-5">
+        <div class="col-md-6">
+            <h2>Featues</h2>
+            <ul class="list-group">
+                <li class="list-group-item">Tasty Meal suggestions tailored to you</li>
+                <li class="list-group-item">Locations near you for Budget Groceries</li>
+                <li class="list-group-item">Eco-Friendly meal choses</li>
+                <li class="list-group-item">Diet Preferences and Filtering Allergies</li>
+            </ul>
+        </div>
+        <div class="col-md-6">
+            <h3>Benefits for Students</h3>
+            <ul class"list-group">
+                <li class="list-group-item"> Weekly Planner for Meals</li>
+                <li class="list-group-item"> Healthy Local Meal Deals</li>
+                <li class="list-group-item"> Sustainable Food Tracker</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="mt-5">
+        <h3>Top Meals Today!</h3>
+        <div class="card" style="width: 18rem;">
+            <img src="https://spoonacular.com/recipeImages/716426-312x231.jpg" class="card-img-top" alt="Top Meal">
+            <div class="card-body">
+                <h5>Simple Grilled Chicken Bowl</h5>
+                <p class="card-text">A healthy, protein that is easy-to-cook protein meal.</p>
+                <a href="https://spoonacular.com/recipes/simple-grilled-chicken-bowl-716426" 
+                target="_blank" class="btn btn-primary">View the Recipe</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
