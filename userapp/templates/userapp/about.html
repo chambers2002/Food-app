@@ -2,21 +2,24 @@
 {% block content %}
 <div class="container mt-4">
     <h1>About the Food App</h1>
+
+    <br>
+
     <p class="lead">This app helps students eat well, save money, and live sustainably.</p>
 
     <h3 class="mt-4">How This App Works</h3>
     <p>This smart food app allows Students to plan and enter there Featured Preferences:</p>
-    <ul>
-        <li>Pensonalised Meal Recommendations</li>
-        <li>Filtering results for things like allergies, budgets and eco-values </li> 
-        <li>Deal Grocery insights by Locations</li>
+    <ul class="list-group mb-5">
+        <li class="list-group-item">Pensonalised Meal Recommendations</li>
+        <li class="list-group-item">Filtering results for things like allergies, budgets and eco-values </li> 
+        <li class="list-group-item">Deal Grocery insights by Locations</li>
     </ul>
 
-    <h3 class="mt-4">This was Built with</h3>
-    <ul>
-        <li>Django and Rest Framework</li>
-        <li>Bootstrap 5 into responsive UI</li>
-        <li>Spoonacular and Edamam APIs for recipes and nutrition</li>
+    <h3 class="mt-5">This was Built with</h3>
+    <ul class="list-group mb-5">
+        <li class="list-group-item">Django and Rest Framework</li>
+        <li class="list-group-item">Bootstrap 5 into responsive UI</li>
+        <li class="list-group-item">Spoonacular and SendGrid APIs for recipes and Nearby Stores</li>
     </ul>
 </div>
 {% endblock %}
