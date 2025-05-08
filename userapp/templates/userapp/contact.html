@@ -1,20 +1,13 @@
 {% extends "userapp/base.html" %}
 {% block content %}
-    <h1>Contact</h1>
-    <p>Reach out with feedback or suggestions!</p>
-
-    {% if messages %}
-        {% for message in messages %}
-            <div style="color: {% if message.tags == 'success' %}
-            green{% else %}red{% endif %};">
-                {{ message }}
+    <form action="/contact/" method="post">
+        {% csrf_token %}
+        {% for field in form %}
+            <div class="fieldWrapper">
+                {{ field.errors }}
+                {{ field.label_tag }} {{ field }}
             </div>
         {% endfor %}
-    {% endif %}
-
-    <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Send message</button>
-    </form>
+        <input type="submit" value="Submit">
+        </form> 
 {% endblock %}
