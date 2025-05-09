@@ -2,9 +2,10 @@ from django.shortcuts import render
 import requests
 
 def budget_groceries(request):
-    location = request.GET.get('location','')
+    location = request.GET.get('location', '')
     stores = []
-    
+    center = None
+        
     if location:
         geo_url = "https://nominatim.openstreetmap.org/search"
         geo_params = {"q": location, "format": "json", "limit": 1}
@@ -12,18 +13,36 @@ def budget_groceries(request):
         
         if geo_res.status_code == 200 and geo_res.json():
             coords = geo_res.json()[0]
-            lat, lon = float(coords['lat']), float(coords['lon'])
+            lat = float(coords['lat'])
+            lon = float(coords['lon'])
+            center = {"lat": lat, "lon": lon}
             
-            stores = [
-                {"name": "Grocery Student Discounts", "lat": lat + 0.001, "lon": lon + 0.001},
-                {"name": "Express Budget Marketing", "lat": lat - 0.001, "lon": lon - 0.001}
-            ]
+            overpass_url = "http://overpass-api.de/api/interpreter"
+            query = f"""
+            [out:json];
+            (
+                node["shop"="supermarket"](around:1000,{lat},{lon});
+                node["shop"="convenience"](around:1000,{lat},{lon});
+                node["amenity"="fast_food"](around:1000,{lat},{lon});
+            );
+            out center 5;
+            """
+            res = requests.post(overpass_url, data=query)
+            
+            if res.status_code == 200:
+                data = res.json()
+                for element in data["elements"]:
+                    name = element["tags"].get("name")
+                    if name:
+                        stores.append({
+                            "name" : name,
+                            "lat" : element["lat"],
+                            "lon" : element["lon"]
+                        })
             
     return render(request, "budgetgroceries/BudgetGroceries.html", {
         "location": location,
-        "stores": stores
+        "stores": stores[:5],
+        "center": center
     })
 
-def budget_groceries_view(request):
-    max_price = request.GET.get('max_price')  
-    return render(request, 'budget_groceries.html', {'max_price': max_price})

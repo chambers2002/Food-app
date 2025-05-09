@@ -1,34 +1,39 @@
-{% extends 'userapp/base.html' %}
+{% extends "userapp/base.html" %}
+
 {% block title %}Budget Groceries{% endblock %}
 {% block content %}
 <h2>Student Budget Groceries</h2>
 
 <form method="get" class="mb-4">
     <input type="text" name="location" value="{{ location }}" class="form-control mb-2"
-     placeholder="Enter Postcode or address" required>
-     <button type="submit" class="btn btn-primary"> Searching for Nearby Stores</button>
+        placeholder="Enter Postcode or address" required />
+    <button type="submit" class="btn btn-primary">Searching for Nearby Stores</button>
 </form>
 
-{% if stores %}
+{% if location %}
     <h4>Avaliable Stores Nearby "{{ location }}"</h4>
     <div id="map" style="height: 275px;"></div>
-{% elif location %}
-    <p>There is no nearby stores near your location. Please choose another Location.</p>
 {% endif %}
 {% endblock %}
 
 {% block extra_scripts %}
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
 <script>
-{% if stores %}
-    const map = L.map('map').setView([{{ stores.0.lat }}, {{ stores.0.lon }}], 15);
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
+{% if center %}
+    const map = L.map('map').setView([{{ center.lat }}, {{ center.lon }}], 15);
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    }).addTo(map);
 
     {% for store in stores %}
         L.marker([{{ store.lat }}, {{ store.lon }}]).addTo(map)
-            .bindPopup("{{ store.name }}");
+            .addTo(map)
+            .bindPopup("{{ store.name }}"); 
     {% endfor %}
 {% endif %}
 </script>
 {% endblock %}
+
+
