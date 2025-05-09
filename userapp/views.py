@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect, HttpResponse
+from django.shortcuts import render, redirect
 from django.conf import settings
 from userapp.forms import ContactForm
 from .forms import ContactForm
