@@ -19,6 +19,12 @@ def about(request):
 def meals(request):
     return render(request, 'userapp/meals.html')
 
+def planner_page(request):
+    return redirect("https://spoonacular.com/meal-planner")
+
+def food_article(request):
+    return redirect("https://spoonacular.com/articles")
+
 def contact(request):
     if request.method == 'POST':
         form = ContactForm(request.POST)
@@ -75,3 +81,7 @@ class MealRecommendationView(APIView):
 
         diet = preferences[0] if preferences else "chicken"
         return f"/mealsuggestions/?query={diet}&cheap=true&max_calories={max_calories or 600}"
+    
+    
+    
+    

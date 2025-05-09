@@ -16,35 +16,23 @@
         <li class="list-group-item">Diet Preferences and Filtering Allergies</li>
     </ul>
 
-    <h3>Benefits for Students</h3>
-    <div class="row mb-4">
-        <div class="col-md-4">
-            <div class="card border-info">
-                <div class="card-body">
-                     <h5 class="card-title">Weekly Planner</h5>
-                     <p class="card-text">Plan Meals in your time and budget with smart suggestions.</p>
-                </div>
-            </div>
+    <h3 class="mb-4">Benefits for Students</h3>
+
+    <div class="row text-center">
+        <div class="col-md-4 mb-4">
+            <a href="{% url 'userapp:planner_page' %}" class="btn btn-outline-primary btn-block">
+                <h5 class="mb-3"> This is your Weekly Planner </h5>
+                <p class="mb-3"> Here is your Weekly Planner - To help Plan your Meals in Time and Budget </p>
+            </a>
         </div>
 
-        <div class="col-md-4">
-            <div class="card border-success">
-                <div class="card-body">
-                     <h5 class="card-title">Healthy Meal Deals</h5>
-                     <p class="card-text">Nutritional student-friendly meals from grocers and stores.</p>
-                </div>
-            </div>
+        <div class="col-md-4 mb-4">
+            <a href="{% url 'userapp:food_article' %}" class="btn btn-outline-primary btn-block">
+                <h5 class="mb-3"> Check the Latest Articles Today </h5>
+                <p class="mb-3">  Here is your Wide range of Food Articles for you today! </p>
+            </a>
         </div>
-
-        <div class="col-md-4">
-            <div class="card border-warning">
-                <div class="card-body">
-                     <h5 class="card-title">Sustainable Trackesr</h5>
-                     <p class="card-text">Choose your Eco-friendly meal choice and Track your Food Habits today.</p>
-                </div>
-            </div>
-        </div>
-
+    </div>
 
     <div class="row mt-5">
         <div class="col-md 6">
