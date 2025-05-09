@@ -157,3 +157,9 @@ SPOONACULAR_API_KEY = '1d78d06aaded4792bbf5da2b2ab8d8dd'
 
 SENDGRID_API_KEY = config('SENDGRID_API_KEY')
 DEFAULT_FROM_EMAIL = config('DEFAULT_FROM_EMAIL')
+
+# Looking to send emails in production? Check out our Email API/SMTP product!
+EMAIL_HOST = 'sandbox.smtp.mailtrap.io'
+EMAIL_HOST_USER = 'e509d9a13d1c3b'
+EMAIL_HOST_PASSWORD = 'ef4b67d2505349'
+EMAIL_PORT = '2525'

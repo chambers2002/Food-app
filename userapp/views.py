@@ -6,6 +6,7 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
 from .serializers import QuestionnaireSerializer
+from django.core.mail import EmailMessage
 
 def home(request):
     return render(request, 'userapp/home.html', {'title': 'Welcome'})
@@ -20,7 +21,18 @@ def contact(request):
     if request.method == 'POST':
         form = ContactForm(request.POST)
         if form.is_valid():
-            return redirect('userapp:success')
+            name = form.cleaned_data['name']
+            email = form.cleaned_data['email']
+            message = form.cleaned_data['message']
+            
+            EmailMessage(
+                'Student Contact Submission from {}'.format(name),
+                message,
+                'form-response@example.com',
+                ['declanchambers666@gmail.com'],
+                reply_to=[email]
+            ).send()
+            return redirect ('userapp:success')
     else:
         form = ContactForm()        
     return render(request, 'userapp/contact.html', {'form': form})
