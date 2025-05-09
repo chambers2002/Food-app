@@ -7,6 +7,7 @@ from rest_framework.response import Response
 from rest_framework import status
 from .serializers import QuestionnaireSerializer
 from django.core.mail import EmailMessage
+from django.contrib.auth.decorators import login_required
 
 def home(request):
     return render(request, 'userapp/home.html', {'title': 'Welcome'})
@@ -14,6 +15,7 @@ def home(request):
 def about(request):
     return render(request, 'userapp/about.html', {'title': 'About'})
 
+@login_required
 def meals(request):
     return render(request, 'userapp/meals.html')
 

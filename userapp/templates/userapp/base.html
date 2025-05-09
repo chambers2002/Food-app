@@ -40,7 +40,11 @@
                         <a class="nav-item nav-link" href="{% url 'userapp:home' %}">Home</a>
                         <a class="nav-item nav-link" href="{% url 'userapp:about' %}">About</a>
                         <a class="nav-item nav-link" href="{% url 'userapp:contact' %}">Contact</a>
+
+                    {% if user.is_authenticated %}
                         <a class="nav-item nav-link" href="{% url 'userapp:meals' %}">Meals</a>
+                    {% endif %}
+                    
                     </div>
                     
                     <!-- RIGHT NAVBAR -->
